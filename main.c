@@ -5,6 +5,17 @@
 
 #define MAX_LINE 2048
 
+void mostrar_sudoku(char **sudoku) {
+  printf("  ABCDEFGHI\n");
+
+  for (int i = 0; i < 9; i++) { 
+
+    printf( "%d %s \n",i+1, sudoku[i]);
+
+
+  }
+}
+
 bool validar_fila(char **sudoku, int row, char num) {
     for (int col = 0; col < 9; col++) {
         if (sudoku[row][col] == num) {
@@ -43,7 +54,7 @@ int main(void) {
 
   FILE * archivo;
   archivo = fopen("puzles.txt", "r");
-  char temporal[10];
+
 
   char buffer[MAX_LINE];
   char **sudoku;
@@ -83,12 +94,7 @@ int main(void) {
 
 
   
-  printf("  ABCDEFGHI\n");
-  for (int i = 0; i < 9; i++) {
-    printf("%d %s \n",i+1, sudoku[i]);
-
-
-  }
+  mostrar_sudoku(sudoku);
 
   bool juego = true;
   char fila;
@@ -120,7 +126,7 @@ int main(void) {
 
     int columna_int = columna - 'A';
     int fila_int = fila - '0' - 1;
-    int numero_int = numero - '0';
+
 
     if (movimiento_valido(sudoku, fila_int, columna_int, numero) == false) { printf( "Movimiento invalido\n");
     
@@ -130,14 +136,7 @@ int main(void) {
     
     sudoku[fila_int][columna_int] = numero;
     
-    printf("  ABCDEFGHI\n");
-    
-    for (int i = 0; i < 9; i++) { 
-
-      printf( "%d %s \n",i+1, sudoku[i]);
-    
-    
-    }
+    mostrar_sudoku(sudoku);
     }
     
     
